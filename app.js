@@ -49,10 +49,10 @@ accelerometer.addEventListener('reading', e => {
     ctx.arc(x, y, 20, 0, this.ballSize );
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fill();
-    value = parseInt(points,10) + 1;
+    value += 1;
     //pointsHeader.innerText = value;
     document.getElementById("points").innerHTML = "Moi";
-    document.getElementById("points2").innerHTML = value;
+    document.getElementById("points2").innerHTML = value.toString();
     //x += 2;
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
