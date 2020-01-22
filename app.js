@@ -26,6 +26,18 @@ accelerometer.addEventListener('reading', e => {
   
 
   accelerometer.start();
+  function newPoint(){
+    console.log("tässä pistex" + pistex);
+    this.pistex = Math.random() * can.width;
+    this.pistey = Math.random() * can.height;
+    console.log("tässä pistex" + pistex);
+    ctx.beginPath();
+      ctx.fillStyle = 'rgba(250,0,0,0.4)';
+      ctx.fillRect(this.pistex,  this.pistey , 50, 50);
+      ctx.fill();
+      ctx.restore();
+      
+  }
   function draw() {
       
     x = parseInt(x + xvelocity / 50);
@@ -39,14 +51,6 @@ accelerometer.addEventListener('reading', e => {
       ctx.fillStyle = 'rgba(250,0,0,0.4)';
       ctx.fillRect(this.pistex,  this.pistey , 50, 50);
       ctx.fill();
-
-
-
-
-    ctx.beginPath();
-    ctx.arc(x, y, 20, 0, 2 * Math.PI);
-    ctx.fillStyle = 'rgba(250,0,0,0.4)';
-    ctx.fill();
 
     //x += 2;
     ctx.fillStyle = "rgba(34,45,23,0.4)";
@@ -80,17 +84,7 @@ function bounceCheck(){
       destroyPoint();
     }
 }
-function newPoint(pistex, pistey){
-  console.log("tässä pistex" + pistex);
-  this.pistex = Math.random() * can.width;
-  this.pistey = Math.random() * can.height;
-  console.log("tässä pistex" + pistex);
-  ctx.beginPath();
-    ctx.fillStyle = 'rgba(250,0,0,0.4)';
-    ctx.fillRect(this.pistex,  this.pistey , 50, 50);
-    ctx.fill();
-    
-}
+
 function destroyPoint(){
   points += 1;
   pointsHeader.innerText = points;
@@ -101,6 +95,6 @@ document.body.appendChild(pointsHeader);
 }
 
 draw();
-//newPoint((Math.random() * can.width), (Math.random() * can.height));
+newPoint();
 
 
