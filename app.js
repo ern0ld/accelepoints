@@ -1,6 +1,8 @@
 var can = document.getElementById('myCanvas');
 can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
+let target = new Image();
+target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
 let x = 10, y = 100;
 this.pistex = 50;
 this.pistey = 140;
@@ -47,7 +49,7 @@ accelerometer.addEventListener('reading', e => {
     x += 2;
     //ctx.fillStyle = "rgba(34,45,23,0.4)";
     //ctx.fillRect(0, 0, can.width, can.height);
-    
+    ctx.drawImage(target, 0, 0, 300, 300);
     requestAnimationFrame(draw);
     
     
