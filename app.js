@@ -103,6 +103,6 @@ document.body.appendChild(pointsHeader);
 }
 
 draw();
-newPoint();
+//newPoint();
 
 
