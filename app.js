@@ -3,7 +3,7 @@ can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
 let x = 10, y = 100;
 this.pistex = 0;
-this.pistey = ;
+this.pistey = 0;
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
 let xvelocity = 0;
