@@ -110,7 +110,7 @@ function newPoint(){
 //tuhoaa edellisen pisteobjektin mikäli siihen on osuttu. Lisää pisteitä pääsivulle
 function destroyPoint(){
   
-  value += parseInt(points,10) + 500;
+  value = value + parseInt(points,10) + 500;
   //pointsHeader.innerText = value;
   document.getElementById("points").innerHTML = value;
 //document.body.appendChild(pointsHeader);
