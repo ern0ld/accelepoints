@@ -2,8 +2,8 @@ var can = document.getElementById('myCanvas');
 can.height = 1000; can.width = 1300;
 var ctx = can.getContext('2d');
 let x = 10, y = 100;
-ctx.fillStyle = "black";
-ctx.fillRect(700, 100, 100, 100);
+//ctx.fillStyle = "black";
+//ctx.fillRect(700, 100, 100, 100);
 let xvelocity = 0;
   let yvelocity = 0;
 
@@ -63,8 +63,8 @@ function bounceCheck(){
 }
 function newPoint(){
   
-    ctx.fillStyle = "white";
-    ctx.fillRect(Math.random * 20, Math.random *20, 30, 30);
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(Math.random * can.height, Math.random * can.width , 50, 50);
   
 
 }
