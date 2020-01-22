@@ -30,16 +30,15 @@ accelerometer.addEventListener('reading', e => {
   
   });
   function lightsensor(){
-    if ( 'AmbientLightSensor' in window ) {
-      const sensor = new AmbientLightSensor();
-      sensor.onreading = () => {
-        console.log('Current light level:', sensor.illuminance);
-      };
-      sensor.onerror = (event) => {
-        console.log(event.error.name, event.error.message);
-      };
-      sensor.start();
-    }
+    window.addEventListener("devicelight", function (event) {
+
+      // Read out the lux value
+      
+      var luminosity = event.value;
+      
+      alert(luminosity);
+      
+      });
   }
   
 
