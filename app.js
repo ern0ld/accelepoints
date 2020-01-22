@@ -40,6 +40,9 @@ accelerometer.addEventListener('reading', e => {
       };
       sensor.start();
     }
+    else {
+      console.log("Valosensori ei käytettävissä");
+    }
   }
   
 
