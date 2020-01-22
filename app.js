@@ -7,7 +7,7 @@ let x = 10, y = 100;
 this.pistex = 50;
 this.pistey = 140;
 let points = 0;
-let pointsHeader = document.getElementById('points');
+//let pointsHeader = document.getElementById('points');
 this.ballSize = 2 * Math.PI;
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
@@ -99,6 +99,7 @@ function newPoint(){
  
 }
 function destroyPoint(){
+  let points = document.getElementById("p1").innerHTML;
   let value = parseInt(points,10) + 500;
   //pointsHeader.innerText = value;
   document.getElementById("points").innerHTML = value;
