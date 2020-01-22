@@ -49,7 +49,7 @@ accelerometer.addEventListener('reading', e => {
     x += 2;
     //ctx.fillStyle = "rgba(34,45,23,0.4)";
     //ctx.fillRect(0, 0, can.width, can.height);
-    ctx.drawImage(target, 0, 0, 300, 300);
+   // ctx.drawImage(target, 0, 0, 300, 300);
     requestAnimationFrame(draw);
     
     
@@ -107,7 +107,7 @@ document.body.appendChild(pointsHeader);
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
 }
-
+newPoint();
 draw();
 
 
