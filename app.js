@@ -1,5 +1,5 @@
 var can = document.getElementById('myCanvas');
-can.height = 1000; can.width = 1300;
+can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
 let x = 10, y = 100;
 //ctx.fillStyle = "black";
@@ -69,8 +69,9 @@ function newPoint(){
   
 
 }
-newPoint();
-newPoint();
+
 draw();
+newPoint();
+newPoint();
 
 
