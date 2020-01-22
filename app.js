@@ -10,8 +10,7 @@ this.ballSize = 2 * Math.PI;
 
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
-ctx.fillStyle = "rgba(34,45,23,0.4)";
-ctx.fillRect(0, 0, can.width, can.height);
+
 let xvelocity = 0;
   let yvelocity = 0;
 
@@ -30,9 +29,13 @@ accelerometer.addEventListener('reading', e => {
 
   accelerometer.start();
   function draw() {
-    
+    ctx.clearRect(x,y,can.width,can.height);
+    ctx.fillStyle = "rgba(34,45,23,0.4)";
+    ctx.fillRect(0, 0, can.width, can.height);
+    ctx.save();
     x = parseInt(x + xvelocity / 50);
     y = parseInt(y + yvelocity / 50);
+  
     bounceCheck();
       
 
@@ -44,8 +47,9 @@ accelerometer.addEventListener('reading', e => {
     x += 2;
     //ctx.fillStyle = "rgba(34,45,23,0.4)";
     //ctx.fillRect(0, 0, can.width, can.height);
+    
     requestAnimationFrame(draw);
-    ctx.clearRect(x,y,can.width,can.height);
+    
     
 }
 function bounceCheck(){
@@ -103,6 +107,6 @@ document.body.appendChild(pointsHeader);
 }
 
 draw();
-newPoint();
+
 
 
