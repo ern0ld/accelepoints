@@ -43,6 +43,14 @@ accelerometer.addEventListener('reading', e => {
     x = parseInt(x + xvelocity / 50);
     y = parseInt(y + yvelocity / 50);
     bounceCheck();
+    this.pistex = Math.random() * can.width;
+    this.pistey = Math.random() * can.height;
+    console.log("tässä pistex" + pistex);
+    ctx.beginPath();
+      ctx.fillStyle = 'rgba(250,0,0,0.4)';
+      ctx.fillRect(this.pistex,  this.pistey , 50, 50);
+      ctx.fill();
+      ctx.restore();
       
     this.pistex = Math.random() * can.width;
     this.pistey = Math.random() * can.height;
