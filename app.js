@@ -64,7 +64,7 @@ function bounceCheck(){
 function newPoint(){
   ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
-    ctx.fillRect(Math.random * 100, Math.random * 100 , 50, 50);
+    ctx.fillRect(100, 100 , 50, 50);
     ctx.fill();
     
     
