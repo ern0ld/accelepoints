@@ -7,7 +7,7 @@ var points = document.getElementById("points").innerHTML;
 let x = 10, y = 100;
 this.pistex = 0;
 this.pistey = 0;
-var value;
+var value = 0;
 this.ballSize = 2 * Math.PI;
 
 ctx.clearRect(x,y,can.width,can.height);
@@ -49,7 +49,7 @@ accelerometer.addEventListener('reading', e => {
     ctx.arc(x, y, 20, 0, this.ballSize );
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fill();
-    value += 1;
+    value = value + 1;
     var a = value.toString();
     //pointsHeader.innerText = value;
     document.getElementById("points").innerHTML = "Moi";
