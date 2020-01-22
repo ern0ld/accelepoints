@@ -2,6 +2,8 @@ var can = document.getElementById('myCanvas');
 can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
 let x = 10, y = 100;
+this.pistex = 0;
+this.pistey = ;
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
 let xvelocity = 0;
@@ -60,21 +62,28 @@ function bounceCheck(){
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
     }
+    if(x == pistex && y == pistey) {
+      destroyPoint();
+    }
 }
 function newPoint(){
+  console.log("tässä pistex" + pistex);
+  this.pistex = Math.random() * can.width;
+  this.pistey = Math.random() * can.height;
+  console.log("tässä pistex" + pistex);
   ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
-    ctx.fillRect((Math.random() * 100), (Math.random() * 100) , 50, 50);
+    ctx.fillRect(this.pistex,  this.pistey , 50, 50);
     ctx.fill();
     
-    
-    
-  
-
+}
+function destroyPoint(){
+  console.log("tuhottu");
+  ctx.clearRect(this.pistex,this.pistey,50,50);
+  newPoint();
 }
 
 draw();
-newPoint();
 newPoint();
 
 
