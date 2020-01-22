@@ -8,11 +8,8 @@ let x = 10, y = 100;
 this.pistex = 50;
 this.pistey = 140;
 let value = 0;
-//let points = 0;
-//let pointsHeader = document.getElementById('points');
 this.ballSize = 2 * Math.PI;
-//ctx.fillStyle = "black";
-//ctx.fillRect(700, 100, 100, 100);
+
 ctx.clearRect(x,y,can.width,can.height);
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
@@ -20,14 +17,15 @@ ctx.clearRect(x,y,can.width,can.height);
 let xvelocity = 0;
   let yvelocity = 0;
 
+  //Alustetaan kiihtyvyysanturi, joka mittaa puhelimen asentoa ja liikettä
 let accelerometer = new Accelerometer({frequency: 60});
 accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the X-axis " + accelerometer.x);
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
    
-    xvelocity = accelerometer.x;
-    yvelocity = accelerometer.y;
+    xvelocity = xvelocity + accelerometer.x;
+    yvelocity = xvelocity + accelerometer.y;
   
   
   });
@@ -40,11 +38,13 @@ accelerometer.addEventListener('reading', e => {
     y = parseInt(y + yvelocity / 1000);
   
     bounceCheck();
+    //Luodaan pisteobjekti canvakselle
     ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fillRect(this.pistex,  this.pistey , 50, 50);
     ctx.fill();
 
+    //Luodaan liikuteltava pallo canvakselle
     ctx.beginPath();
     ctx.arc(x, y, 20, 0, this.ballSize );
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
@@ -54,38 +54,45 @@ accelerometer.addEventListener('reading', e => {
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
    // ctx.drawImage(target, 0, 0, 300, 300);
+   //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
     requestAnimationFrame(draw);
     
     
 }
 
+//Törmäyksen tarkistus
 function bounceCheck(){
+  //luodaan muuttujat törmäyspisteen löytämiseksi
   let collisionx = x - this.pistex;
 let collisiony = y - this.pistey;
 var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
 
-
+//Mikäli pallo on menossa rajojen ulkopuolelle vasemmalta, vaihdetaan suunta
     if(x <0){
         x = 0;
           xvelocity = -xvelocity;
           
           console.log("muutettu xvelocity " + x);
       }
+      //Mikäli pallo on menossa rajojen ulkopuolelle alhaalta, vaihdetaan suunta
       if(y < 0){
           y = 0;
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
     }
+    //Mikäli pallo on menossa rajojen ulkopuolelle oikealta vaihdetaan suunta
     if(x > can.width){
         x = can.width -50;
         xvelocity = -xvelocity;
        console.log("muutettu x" + x);
     }
+    //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
     if(y > can.height){
         y = can.height -50;
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
     }
+    //Tarkistetaan törmääkö pallo pisteobjektiin
     if(distance < ballSize + 50) {
       console.log("törmäys");
       destroyPoint();
@@ -93,13 +100,14 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
     }
    
 }
+//luo uudet satunnaiset koordinaatit pisteobjektille
 function newPoint(){
-  console.log("tässä pistex" + pistex);
+
   this.pistex = Math.random() * can.width;
   this.pistey = Math.random() * can.height;
-  console.log("tässä pistex" + pistex);
  
 }
+//tuhoaa edellisen pisteobjektin mikäli siihen on osuttu. Lisää pisteitä pääsivulle
 function destroyPoint(){
   
   value += parseInt(points,10) + 500;
