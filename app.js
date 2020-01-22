@@ -21,8 +21,8 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
    
-    xvelocity = xvelocity + accelerometer.x;
-    yvelocity = yvelocity + accelerometer.y;
+    xvelocity = xvelocity + accelerometer.x *0.50;
+    yvelocity = yvelocity + accelerometer.y *0.50;
   
   
   });
@@ -30,7 +30,7 @@ accelerometer.addEventListener('reading', e => {
 
   accelerometer.start();
   function draw() {
-    ctx.clearRect(x,y,0,this.ballSize);
+    
     x = parseInt(x + xvelocity / 50);
     y = parseInt(y + yvelocity / 50);
     bounceCheck();
@@ -45,9 +45,17 @@ accelerometer.addEventListener('reading', e => {
     //ctx.fillStyle = "rgba(34,45,23,0.4)";
     //ctx.fillRect(0, 0, can.width, can.height);
     requestAnimationFrame(draw);
+    ctx.clearRect(x,y,0,this.ballSize);
     
 }
 function bounceCheck(){
+  let collisionx = x - this.pistex;
+let collisiony = y - this.pistey;
+var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
+
+if (distance < circle1.radius + circle2.radius) {
+    // collision detected!
+}
     if(x <0){
         x = 0;
           xvelocity = -xvelocity;
@@ -69,9 +77,12 @@ function bounceCheck(){
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
     }
-    if(x == pistex && y == pistey) {
+    if(distance < ballSize + 50) {
+      console.log("törmäys");
       destroyPoint();
+      
     }
+   
 }
 function newPoint(){
   console.log("tässä pistex" + pistex);
