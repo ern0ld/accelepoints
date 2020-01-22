@@ -29,23 +29,7 @@ accelerometer.addEventListener('reading', e => {
   
   
   });
-  function lightsensor(){
-    if ( 'AmbientLightSensor' in window ) {
-      const sensor = new AmbientLightSensor();
-      sensor.onreading = () => {
-        console.log('Current light level:', sensor.illuminance);
-        alert("current light level: " + sensor.illuminance);
-      };
-      sensor.onerror = (event) => {
-        console.log(event.error.name, event.error.message);
-      };
-      sensor.start();
-    }
-    else {
-      console.log("Valosensori ei käytettävissä");
-    }
-    
-  }
+  
  
   accelerometer.start();
   function draw() {
