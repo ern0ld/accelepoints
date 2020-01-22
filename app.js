@@ -9,6 +9,8 @@ let pointsHeader = document.getElementById('points');
 
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
+ctx.fillStyle = "rgba(34,45,23,0.4)";
+ctx.fillRect(0, 0, can.width, can.height);
 let xvelocity = 0;
   let yvelocity = 0;
 
@@ -26,43 +28,21 @@ accelerometer.addEventListener('reading', e => {
   
 
   accelerometer.start();
-  function newPoint(){
-    console.log("tässä pistex" + pistex);
-    this.pistex = Math.random() * can.width;
-    this.pistey = Math.random() * can.height;
-    console.log("tässä pistex" + pistex);
-    ctx.beginPath();
-      ctx.fillStyle = 'rgba(250,0,0,0.4)';
-      ctx.fillRect(this.pistex,  this.pistey , 50, 50);
-      ctx.fill();
-      ctx.restore();
-      
-  }
   function draw() {
       
     x = parseInt(x + xvelocity / 50);
     y = parseInt(y + yvelocity / 50);
     bounceCheck();
-    this.pistex = Math.random() * can.width;
-    this.pistey = Math.random() * can.height;
-    console.log("tässä pistex" + pistex);
-    ctx.beginPath();
-      ctx.fillStyle = 'rgba(250,0,0,0.4)';
-      ctx.fillRect(this.pistex,  this.pistey , 50, 50);
-      ctx.fill();
-      ctx.restore();
       
-    this.pistex = Math.random() * can.width;
-    this.pistey = Math.random() * can.height;
-    console.log("tässä pistex" + pistex);
+
     ctx.beginPath();
-      ctx.fillStyle = 'rgba(250,0,0,0.4)';
-      ctx.fillRect(this.pistex,  this.pistey , 50, 50);
-      ctx.fill();
+    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    ctx.fillStyle = 'rgba(250,0,0,0.4)';
+    ctx.fill();
 
     //x += 2;
-    ctx.fillStyle = "rgba(34,45,23,0.4)";
-    ctx.fillRect(0, 0, can.width, can.height);
+    //ctx.fillStyle = "rgba(34,45,23,0.4)";
+    //ctx.fillRect(0, 0, can.width, can.height);
     requestAnimationFrame(draw);
     //ctx.clearRect(0,0,can.width,can.height);
 }
@@ -92,7 +72,17 @@ function bounceCheck(){
       destroyPoint();
     }
 }
-
+function newPoint(){
+  console.log("tässä pistex" + pistex);
+  this.pistex = Math.random() * can.width;
+  this.pistey = Math.random() * can.height;
+  console.log("tässä pistex" + pistex);
+  ctx.beginPath();
+    ctx.fillStyle = 'rgba(250,0,0,0.4)';
+    ctx.fillRect(this.pistex,  this.pistey , 50, 50);
+    ctx.fill();
+    
+}
 function destroyPoint(){
   points += 1;
   pointsHeader.innerText = points;
@@ -103,6 +93,6 @@ document.body.appendChild(pointsHeader);
 }
 
 draw();
-//newPoint();
+newPoint();
 
 
