@@ -37,7 +37,7 @@ accelerometer.addEventListener('reading', e => {
     //x += 2;
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
-    //requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
     //ctx.clearRect(0,0,can.width,can.height);
 }
 function bounceCheck(){
