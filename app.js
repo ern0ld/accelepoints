@@ -100,8 +100,9 @@ function newPoint(){
 }
 function destroyPoint(){
   let value = parseInt(points,10) + 500;
-  pointsHeader.innerText = value;
-document.body.appendChild(pointsHeader);
+  //pointsHeader.innerText = value;
+  document.getElementById("points").innerHTML = value;
+//document.body.appendChild(pointsHeader);
   console.log("tuhottu");
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
