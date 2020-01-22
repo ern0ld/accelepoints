@@ -123,7 +123,7 @@ function destroyPoint(){
 }
 newPoint();
 draw();
-lightsensor();
+
 
 
 
