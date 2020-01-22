@@ -3,10 +3,12 @@ can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
 let target = new Image();
 target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
+let points = document.getElementById("p1").innerHTML;
 let x = 10, y = 100;
 this.pistex = 50;
 this.pistey = 140;
-let points = 0;
+let value = 0;
+//let points = 0;
 //let pointsHeader = document.getElementById('points');
 this.ballSize = 2 * Math.PI;
 //ctx.fillStyle = "black";
@@ -34,8 +36,8 @@ accelerometer.addEventListener('reading', e => {
   accelerometer.start();
   function draw() {
     
-    x = parseInt(x + xvelocity / 100);
-    y = parseInt(y + yvelocity / 100);
+    x = parseInt(x + xvelocity / 1000);
+    y = parseInt(y + yvelocity / 1000);
   
     bounceCheck();
     ctx.beginPath();
@@ -99,8 +101,8 @@ function newPoint(){
  
 }
 function destroyPoint(){
-  let points = document.getElementById("p1").innerHTML;
-  let value = parseInt(points,10) + 500;
+  
+  value += parseInt(points,10) + 500;
   //pointsHeader.innerText = value;
   document.getElementById("points").innerHTML = value;
 //document.body.appendChild(pointsHeader);
