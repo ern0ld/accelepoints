@@ -34,6 +34,7 @@ accelerometer.addEventListener('reading', e => {
       const sensor = new AmbientLightSensor();
       sensor.onreading = () => {
         console.log('Current light level:', sensor.illuminance);
+        alert("current light level: " + sensor.illuminance);
       };
       sensor.onerror = (event) => {
         console.log(event.error.name, event.error.message);
@@ -43,9 +44,9 @@ accelerometer.addEventListener('reading', e => {
     else {
       console.log("Valosensori ei käytettävissä");
     }
+    
   }
-  
-
+ 
   accelerometer.start();
   function draw() {
     
