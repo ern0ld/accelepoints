@@ -41,7 +41,7 @@ accelerometer.addEventListener('reading', e => {
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fill();
 
-    //x += 2;
+    x += 2;
     //ctx.fillStyle = "rgba(34,45,23,0.4)";
     //ctx.fillRect(0, 0, can.width, can.height);
     requestAnimationFrame(draw);
