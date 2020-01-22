@@ -9,9 +9,11 @@ this.pistey = 140;
 let points = 0;
 let pointsHeader = document.getElementById('points');
 this.ballSize = 2 * Math.PI;
-
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
+ctx.clearRect(x,y,can.width,can.height);
+    ctx.fillStyle = "rgba(34,45,23,0.4)";
+    ctx.fillRect(0, 0, can.width, can.height);
 
 let xvelocity = 0;
   let yvelocity = 0;
@@ -31,15 +33,15 @@ accelerometer.addEventListener('reading', e => {
 
   accelerometer.start();
   function draw() {
-    ctx.clearRect(x,y,can.width,can.height);
-    ctx.fillStyle = "rgba(34,45,23,0.4)";
-    ctx.fillRect(0, 0, can.width, can.height);
-    ctx.save();
+    
     x = parseInt(x + xvelocity / 50);
     y = parseInt(y + yvelocity / 50);
   
     bounceCheck();
-      
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(250,0,0,0.4)';
+    ctx.fillRect(this.pistex,  this.pistey , 50, 50);
+    ctx.fill();
 
     ctx.beginPath();
     ctx.arc(x, y, 20, 0, this.ballSize );
@@ -47,13 +49,14 @@ accelerometer.addEventListener('reading', e => {
     ctx.fill();
 
     x += 2;
-    //ctx.fillStyle = "rgba(34,45,23,0.4)";
-    //ctx.fillRect(0, 0, can.width, can.height);
+    ctx.fillStyle = "rgba(34,45,23,0.4)";
+    ctx.fillRect(0, 0, can.width, can.height);
    // ctx.drawImage(target, 0, 0, 300, 300);
     requestAnimationFrame(draw);
     
     
 }
+
 function bounceCheck(){
   let collisionx = x - this.pistex;
 let collisiony = y - this.pistey;
@@ -93,11 +96,7 @@ function newPoint(){
   this.pistex = Math.random() * can.width;
   this.pistey = Math.random() * can.height;
   console.log("tässä pistex" + pistex);
-  ctx.beginPath();
-    ctx.fillStyle = 'rgba(250,0,0,0.4)';
-    ctx.fillRect(this.pistex,  this.pistey , 50, 50);
-    ctx.fill();
-    
+ 
 }
 function destroyPoint(){
   points += 1;
