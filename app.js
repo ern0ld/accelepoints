@@ -6,6 +6,7 @@ this.pistex = 50;
 this.pistey = 140;
 let points = 0;
 let pointsHeader = document.getElementById('points');
+this.ballSize = 2 * Math.PI;
 
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
@@ -29,14 +30,14 @@ accelerometer.addEventListener('reading', e => {
 
   accelerometer.start();
   function draw() {
-      
+    ctx.clearRect(x,y,0,this.ballSize);
     x = parseInt(x + xvelocity / 50);
     y = parseInt(y + yvelocity / 50);
     bounceCheck();
       
 
     ctx.beginPath();
-    ctx.arc(x, y, 20, 0, 2 * Math.PI);
+    ctx.arc(x, y, 20, 0, this.ballSize );
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fill();
 
@@ -44,7 +45,7 @@ accelerometer.addEventListener('reading', e => {
     //ctx.fillStyle = "rgba(34,45,23,0.4)";
     //ctx.fillRect(0, 0, can.width, can.height);
     requestAnimationFrame(draw);
-    //ctx.clearRect(0,0,can.width,can.height);
+    
 }
 function bounceCheck(){
     if(x <0){
