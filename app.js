@@ -34,8 +34,8 @@ accelerometer.addEventListener('reading', e => {
   accelerometer.start();
   function draw() {
     
-    x = parseInt(x + xvelocity / 1000);
-    y = parseInt(y + yvelocity / 1000);
+    x = parseInt(x + xvelocity / 500);
+    y = parseInt(y + yvelocity / 500);
   
     bounceCheck();
     //Luodaan pisteobjekti canvakselle
@@ -81,13 +81,13 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
         console.log("muutettu y " + y);
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle oikealta vaihdetaan suunta
-    if(x > can.width){
+    if(x > can.width-50){
         x = can.width -50;
         xvelocity = -xvelocity;
        console.log("muutettu x" + x);
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
-    if(y > can.height){
+    if(y > can.height-50){
         y = can.height -50;
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
