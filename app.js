@@ -65,6 +65,7 @@ function newPoint(){
   
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fillRect(Math.random * can.height, Math.random * can.width , 50, 50);
+    ctx.fill();
   
 
 }
