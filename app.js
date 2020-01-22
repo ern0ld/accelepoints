@@ -24,8 +24,8 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
    
-    xvelocity = xvelocity + accelerometer.x *0.50;
-    yvelocity = yvelocity + accelerometer.y *0.50;
+    xvelocity = xvelocity + accelerometer.x;
+    yvelocity = yvelocity + accelerometer.y;
   
   
   });
@@ -34,8 +34,8 @@ accelerometer.addEventListener('reading', e => {
   accelerometer.start();
   function draw() {
     
-    x = parseInt(x + xvelocity / 50);
-    y = parseInt(y + yvelocity / 50);
+    x = parseInt(x + xvelocity / 100);
+    y = parseInt(y + yvelocity / 100);
   
     bounceCheck();
     ctx.beginPath();
@@ -99,8 +99,8 @@ function newPoint(){
  
 }
 function destroyPoint(){
-  points += 1;
-  pointsHeader.innerText = points;
+  let value = parseInt(points,10) + 500;
+  pointsHeader.innerText = value;
 document.body.appendChild(pointsHeader);
   console.log("tuhottu");
   ctx.clearRect(this.pistex,this.pistey,50,50);
