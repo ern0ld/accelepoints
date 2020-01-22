@@ -53,9 +53,7 @@ function bounceCheck(){
 let collisiony = y - this.pistey;
 var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
 
-if (distance < circle1.radius + circle2.radius) {
-    // collision detected!
-}
+
     if(x <0){
         x = 0;
           xvelocity = -xvelocity;
