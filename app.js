@@ -4,7 +4,7 @@ var ctx = can.getContext('2d');
 let target = new Image();
 target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
 var points = document.getElementById("points").innerHTML;
-let x = 10, y = 100;
+let x = can.width/2, y = can.height/2;
 this.pistex = 0;
 this.pistey = 0;
 var value = 0;
@@ -29,6 +29,18 @@ accelerometer.addEventListener('reading', e => {
   
   
   });
+  function lightsensor(){
+    if ( 'AmbientLightSensor' in window ) {
+      const sensor = new AmbientLightSensor();
+      sensor.onreading = () => {
+        console.log('Current light level:', sensor.illuminance);
+      };
+      sensor.onerror = (event) => {
+        console.log(event.error.name, event.error.message);
+      };
+      sensor.start();
+    }
+  }
   
 
   accelerometer.start();
@@ -72,23 +84,23 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
         x = 0;
           xvelocity = -xvelocity;
           
-          console.log("muutettu xvelocity " + x);
+          console.log("muutettu x " + x);
       }
-      //Mikäli pallo on menossa rajojen ulkopuolelle alhaalta, vaihdetaan suunta
+      //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
       if(y < 0){
           y = 0;
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle oikealta vaihdetaan suunta
-    if(x > can.width-50){
-        x = can.width -50;
+    if(x > can.width-20){
+        x = can.width -20;
         xvelocity = -xvelocity;
        console.log("muutettu x" + x);
     }
-    //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
-    if(y > can.height-50){
-        y = can.height -50;
+    //Mikäli pallo on menossa rajojen ulkopuolelle alhaalta, vaihdetaan suunta
+    if(y > can.height-20){
+        y = can.height -20;
         yvelocity = -yvelocity;
         console.log("muutettu y " + y);
     }
@@ -123,6 +135,7 @@ function destroyPoint(){
 }
 newPoint();
 draw();
+lightsensor();
 
 
 
