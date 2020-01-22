@@ -5,8 +5,8 @@ let target = new Image();
 target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
 let points = document.getElementById("points").innerHTML;
 let x = 10, y = 100;
-this.pistex = 50;
-this.pistey = 140;
+this.pistex = 0;
+this.pistey = 0;
 let value = 0;
 this.ballSize = 2 * Math.PI;
 
@@ -103,8 +103,8 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
 //luo uudet satunnaiset koordinaatit pisteobjektille
 function newPoint(){
 
-  this.pistex = Math.random() * can.width;
-  this.pistey = Math.random() * can.height;
+  this.pistex = Math.random() * (can.width - 50);
+  this.pistey = Math.random() * (can.height - 50);
  
 }
 //tuhoaa edellisen pisteobjektin mikäli siihen on osuttu. Lisää pisteitä pääsivulle
