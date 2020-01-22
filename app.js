@@ -2,8 +2,11 @@ var can = document.getElementById('myCanvas');
 can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
 let x = 10, y = 100;
-this.pistex = 0;
-this.pistey = 0;
+this.pistex = 50;
+this.pistey = 140;
+let points = 0;
+let pointsHeader = document.getElementById('points');
+
 //ctx.fillStyle = "black";
 //ctx.fillRect(700, 100, 100, 100);
 let xvelocity = 0;
@@ -11,7 +14,7 @@ let xvelocity = 0;
 
 let accelerometer = new Accelerometer({frequency: 60});
 accelerometer.addEventListener('reading', e => {
-    console.log("Acceleration along the X-axis " + accelerometer.x);
+    //console.log("Acceleration along the X-axis " + accelerometer.x);
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
    
@@ -29,6 +32,17 @@ accelerometer.addEventListener('reading', e => {
     y = parseInt(y + yvelocity / 50);
     bounceCheck();
       
+    this.pistex = Math.random() * can.width;
+    this.pistey = Math.random() * can.height;
+    console.log("tässä pistex" + pistex);
+    ctx.beginPath();
+      ctx.fillStyle = 'rgba(250,0,0,0.4)';
+      ctx.fillRect(this.pistex,  this.pistey , 50, 50);
+      ctx.fill();
+
+
+
+
     ctx.beginPath();
     ctx.arc(x, y, 20, 0, 2 * Math.PI);
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
@@ -66,7 +80,7 @@ function bounceCheck(){
       destroyPoint();
     }
 }
-function newPoint(){
+function newPoint(pistex, pistey){
   console.log("tässä pistex" + pistex);
   this.pistex = Math.random() * can.width;
   this.pistey = Math.random() * can.height;
@@ -78,12 +92,15 @@ function newPoint(){
     
 }
 function destroyPoint(){
+  points += 1;
+  pointsHeader.innerText = points;
+document.body.appendChild(pointsHeader);
   console.log("tuhottu");
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
 }
 
 draw();
-newPoint();
+//newPoint((Math.random() * can.width), (Math.random() * can.height));
 
 
