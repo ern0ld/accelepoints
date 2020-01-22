@@ -7,7 +7,7 @@ var points = document.getElementById("points").innerHTML;
 let x = 10, y = 100;
 this.pistex = 0;
 this.pistey = 0;
-let value = 0;
+var value;
 this.ballSize = 2 * Math.PI;
 
 ctx.clearRect(x,y,can.width,can.height);
