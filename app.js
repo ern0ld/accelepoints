@@ -49,7 +49,9 @@ accelerometer.addEventListener('reading', e => {
     ctx.arc(x, y, 20, 0, this.ballSize );
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
     ctx.fill();
-
+    value += parseInt(points,10) + 1;
+    //pointsHeader.innerText = value;
+    points.innerHTML = value;
     //x += 2;
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
@@ -110,9 +112,9 @@ function newPoint(){
 //tuhoaa edellisen pisteobjektin mikäli siihen on osuttu. Lisää pisteitä pääsivulle
 function destroyPoint(){
   
-  value = value + parseInt(points,10) + 500;
+  value += parseInt(points,10) + 500;
   //pointsHeader.innerText = value;
-  document.getElementById("points").innerHTML = value;
+  points.innerHTML = value;
 //document.body.appendChild(pointsHeader);
   console.log("tuhottu");
   ctx.clearRect(this.pistex,this.pistey,50,50);
