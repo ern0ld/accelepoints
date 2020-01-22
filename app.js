@@ -26,8 +26,8 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
    
-    xvelocity = xvelocity + accelerometer.x;
-    yvelocity = yvelocity + accelerometer.y;
+    xvelocity = accelerometer.x;
+    yvelocity = accelerometer.y;
   
   
   });
