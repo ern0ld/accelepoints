@@ -3,7 +3,7 @@ can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
 let target = new Image();
 target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
-let points = document.getElementById("p1").innerHTML;
+let points = document.getElementById("points").innerHTML;
 let x = 10, y = 100;
 this.pistex = 50;
 this.pistey = 140;
