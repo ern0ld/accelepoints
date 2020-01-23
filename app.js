@@ -16,6 +16,8 @@ ctx.clearRect(x,y,can.width,can.height);
 
 let xvelocity = 0;
   let yvelocity = 0;
+  let acceleX = 0;
+  let acceleY = 0;
 
   //Alustetaan kiihtyvyysanturi, joka mittaa puhelimen asentoa ja liikettä
 let accelerometer = new Accelerometer({frequency: 60});
@@ -24,18 +26,20 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
    
-    xvelocity = xvelocity + accelerometer.x;
-    yvelocity = yvelocity - accelerometer.y;
+    acceleX = accelerometer.x;
+    acceleY = accelerometer.y;
   
   
   });
-  
+ 
  
   accelerometer.start();
   function draw() {
+    xvelocity + acceleX;
+    yvelocity - acceleY;
     
-    x = parseInt(x + xvelocity / 500);
-    y = parseInt(y + yvelocity / 500);
+    x = parseInt(x + xvelocity / 100);
+    y = parseInt(y + yvelocity / 100);
   
     bounceCheck();
     //Luodaan pisteobjekti canvakselle
