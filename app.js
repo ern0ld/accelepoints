@@ -35,8 +35,8 @@ accelerometer.addEventListener('reading', e => {
  
   accelerometer.start();
   function draw() {
-    xvelocity + acceleX;
-    yvelocity - acceleY;
+    xvelocity = xvelocity + acceleX;
+    yvelocity = yvelocity - acceleY;
     
     x = parseInt(x + xvelocity / 100);
     y = parseInt(y + yvelocity / 100);
