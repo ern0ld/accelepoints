@@ -58,7 +58,7 @@ catch(error) {
     bounceCheck();
   var vol = mic.getLevel();
     var thresholdTopY = 0.2;
-    var thresholdBottomY = 0.1;
+    var thresholdBottomY = 0.07;
     var thresholdTopX = 0.1;
     var thresholdBottomX = 0.01;
     console.log(mic.getLevel());
