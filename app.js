@@ -50,7 +50,7 @@ accelerometer.addEventListener('reading', e => {
     var thresholdBottom = sliderBottom.value();
   
     if (vol > thresholdTop && !sound) {
-      y += 500;
+      y += 20;
       sound = true;
     }
   
