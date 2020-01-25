@@ -72,6 +72,7 @@ accelerometer.addEventListener('reading', e => {
     }
     else {
       console.log("laitetta ei ole liikutettu tai kiihtyvyysanturia ei ole käytettävissä");
+      requestAnimationFrame(draw);
     }
     
     
