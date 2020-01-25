@@ -52,7 +52,21 @@ accelerometer.addEventListener('reading', e => {
     bounceCheck();
   
     
-    xvelocity = xvelocity + acceleX;
+    
+   // ctx.drawImage(target, 0, 0, 300, 300);
+   //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
+    
+    var vol = mic.getLevel();
+    var thresholdTop = 0.01;
+    var thresholdBottom = 0.001;
+    console.log(vol);
+    if (vol > thresholdTop && !sound) {
+      y += 5;
+      
+    }
+    if (vol < thresholdBottom) {
+      y -=5;
+      xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
     
     x = parseInt(x + xvelocity / 100);
@@ -74,19 +88,6 @@ accelerometer.addEventListener('reading', e => {
     //x += 2;
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
-   // ctx.drawImage(target, 0, 0, 300, 300);
-   //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
-    
-    var vol = mic.getLevel();
-    var thresholdTop = 0.01;
-    var thresholdBottom = 0.001;
-    console.log(vol);
-    if (vol > thresholdTop && !sound) {
-      y += 5;
-      
-    }
-    if (vol < thresholdBottom) {
-      y -=5;
       sound = false;
     }
      
