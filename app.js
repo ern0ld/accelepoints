@@ -60,6 +60,8 @@ accelerometer.addEventListener('reading', e => {
     var thresholdTop = 0.01;
     var thresholdBottom = 0.001;
     console.log(xvelocity);
+    xvelocity = xvelocity + acceleX;
+    yvelocity = yvelocity - acceleY;
     if (vol > thresholdTop && !sound && (xvelocity < 20 || yvelocity < 20)) {
       y += 5;
       
@@ -70,8 +72,7 @@ accelerometer.addEventListener('reading', e => {
      sound = false;
     }
     else {
-    xvelocity = xvelocity + acceleX;
-    yvelocity = yvelocity - acceleY;
+    
     
     x = parseInt(x + xvelocity / 100);
     y = parseInt(y + yvelocity / 100);
