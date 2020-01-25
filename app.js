@@ -63,12 +63,12 @@ accelerometer.addEventListener('reading', e => {
     xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
     if (vol > thresholdTop && !sound && (xvelocity < 20 || yvelocity < 20)) {
-      y += 5;
+      y += 2;
       
       
     }
     else if (vol < thresholdBottom && (xvelocity < 20 || yvelocity < 20)) {
-      y -=5;
+      y -=2;
      sound = false;
     }
     else {
