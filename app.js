@@ -25,16 +25,25 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the X-axis " + accelerometer.x);
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
-   
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
+    
+    if (x == 0 && y == 0) {
+      init();
+    }
+    
   
   
   });
- 
+ function init(){
+  x = acceleX;
+  y = acceleY;
+ }
  
   accelerometer.start();
   function draw() {
+    
+    if (acceleX != 0 || acceleY != 0) {
     xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
     
@@ -60,6 +69,10 @@ accelerometer.addEventListener('reading', e => {
    // ctx.drawImage(target, 0, 0, 300, 300);
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
     requestAnimationFrame(draw);
+    }
+    else {
+      console.log("laitetta ei ole liikutettu tai kiihtyvyysanturia ei ole käytettävissä");
+    }
     
     
 }
