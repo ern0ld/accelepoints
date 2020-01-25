@@ -12,6 +12,9 @@ this.pistey = 0;
 var value = 0;
 var timeoutID;
 this.ballSize = 2 * Math.PI;
+let mic;
+  let sliderBottom, sliderTop;
+  let sound = false;
 
 
 ctx.clearRect(x,y,can.width,can.height);
@@ -44,7 +47,7 @@ accelerometer.addEventListener('reading', e => {
  
   accelerometer.start();
 
-  function draw() {
+  function draw2() {
   
     bounceCheck();
   
@@ -73,18 +76,35 @@ accelerometer.addEventListener('reading', e => {
     ctx.fillRect(0, 0, can.width, can.height);
    // ctx.drawImage(target, 0, 0, 300, 300);
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
+    
+    var vol = mic.getLevel();
+    var thresholdTop = 0.01;
+    var thresholdBottom = 0.001;
+    console.log(vol);
+    if (vol > thresholdTop && !sound) {
+      y += 1;
+      
+    }
+    if (vol < thresholdBottom) {
+      y -=1;
+      sound = false;
+    }
+     
+  
     requestAnimationFrame(draw2);
-    
-    
-    
-    
 }
+
 function setup(){
- 
+  sliderTop = createSlider(0, 1, 0.3, 0.01);
+  sliderBottom = createSlider(0, 1, 0.1, 0.01);
+  mic = new p5.AudioIn();
+  mic.start();
  
 newPoint();
 
 draw2();
+
+
 }
 
 //Törmäyksen tarkistus
