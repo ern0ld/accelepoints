@@ -27,16 +27,16 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
-    
+    if(x == 0 && y == 0){
+      x = acceleX;
+      y = acceleY;
+    }
   
     
   
   
   });
- function init(){
-  x = acceleX;
-  y = acceleY;
- }
+
  
   accelerometer.start();
   function draw() {
@@ -70,7 +70,6 @@ accelerometer.addEventListener('reading', e => {
     }
     else {
       console.log("laitetta ei ole liikutettu tai kiihtyvyysanturia ei ole käytettävissä");
-      init();
       requestAnimationFrame(draw);
     }
     
@@ -139,7 +138,7 @@ function destroyPoint(){
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
 }
-init();
+
 newPoint();
 draw();
 
