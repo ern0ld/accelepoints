@@ -10,6 +10,7 @@ let x = can.width/2, y = can.height/2;
 this.pistex = 0;
 this.pistey = 0;
 var value = 0;
+var timeoutID;
 this.ballSize = 2 * Math.PI;
 let mic;
   let sliderBottom, sliderTop;
@@ -44,13 +45,15 @@ accelerometer.addEventListener('reading', e => {
 
  
   accelerometer.start();
-  function draw() {
+  function draw2() {
     var vol = mic.getLevel();
     var thresholdTop = sliderTop.value();
     var thresholdBottom = sliderBottom.value();
   
     if (vol > thresholdTop && !sound) {
-      y += 20;
+      y += 200;
+      timeoutID = setInterval(draw2, 10000);
+      clearInterval(timeoutID);
       sound = true;
     }
   
@@ -101,7 +104,7 @@ accelerometer.addEventListener('reading', e => {
     ctx.fillRect(0, 0, can.width, can.height);
    // ctx.drawImage(target, 0, 0, 300, 300);
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
-    requestAnimationFrame(draw);
+    requestAnimationFrame(draw2);
     
     
     
@@ -114,7 +117,7 @@ mic.start();
 newPoint();
 sliderTop = createSlider(0, 1, 0.3, 0.01);
 sliderBottom = createSlider(0, 1, 0.1, 0.01);
-draw();
+draw2();
 }
 
 //Törmäyksen tarkistus
