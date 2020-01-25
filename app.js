@@ -43,8 +43,11 @@ accelerometer.addEventListener('reading', e => {
 
  
   accelerometer.start();
-  function draw2() {
-    
+
+  function draw() {
+  
+    bounceCheck();
+  
     
     xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
@@ -52,7 +55,7 @@ accelerometer.addEventListener('reading', e => {
     x = parseInt(x + xvelocity / 100);
     y = parseInt(y + yvelocity / 100);
   
-    bounceCheck();
+    
     //Luodaan pisteobjekti canvakselle
     ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
