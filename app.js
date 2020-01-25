@@ -48,6 +48,7 @@ accelerometer.addEventListener('reading', e => {
     var vol = mic.getLevel();
     var thresholdTop = sliderTop.value();
     var thresholdBottom = sliderBottom.value();
+    bounceCheck();
   
     if (vol > thresholdTop && !sound) {
       y += 20;
@@ -62,8 +63,8 @@ accelerometer.addEventListener('reading', e => {
     fill(0, 255, 0);
     //console.log(vol);
     noStroke();
-    var y = map(vol, 0, 1, height, 0);
-    rect(width - 50, y, 50, height - y);
+    var y1 = map(vol, 0, 1, height, 0);
+    rect(width - 50, y1, 50, height - y1);
   
     var ty = map(thresholdTop, 0, 1, height, 0);
     stroke(255, 0, 0);
@@ -83,7 +84,7 @@ accelerometer.addEventListener('reading', e => {
     x = parseInt(x + xvelocity / 100);
     y = parseInt(y + yvelocity / 100);
   
-    bounceCheck();
+    
     //Luodaan pisteobjekti canvakselle
     ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
