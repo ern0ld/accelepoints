@@ -15,7 +15,7 @@ this.ballSize = 2 * Math.PI;
 let mic;
   let sliderBottom, sliderTop;
   let sound = false;
-
+let voiceMode = false;
 
 ctx.clearRect(x,y,can.width,can.height);
     ctx.fillStyle = "rgba(34,45,23,0.4)";
@@ -27,7 +27,8 @@ let xvelocity = 0;
   let acceleY = 0;
 
   //Alustetaan kiihtyvyysanturi, joka mittaa puhelimen asentoa ja liikettä
-let accelerometer = new Accelerometer({frequency: 60});
+let accelerometer = null;
+try { accelerometer = new Accelerometer({frequency: 60});
 accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the X-axis " + accelerometer.x);
     //console.log("Acceleration along the Y-axis " + accelerometer.y);
@@ -46,6 +47,69 @@ accelerometer.addEventListener('reading', e => {
 
  
   accelerometer.start();
+}
+catch(error) {
+  console.log("Vaihdetaan ääniohjaukseen");
+  voiceMode = true;
+  drawVoice();
+}
+
+  function drawVoice(){
+    bounceCheck();
+  var vol = mic.getLevel();
+    var thresholdTopY = 0.001;
+    var thresholdBottomY = 0.0001;
+    var thresholdTopX = 0.0003;
+    var thresholdBottomX = 0.001;
+    //console.log(vol);
+    //console.log("Yvelocity " + yvelocity)
+    xvelocity = xvelocity + acceleX;
+    yvelocity = yvelocity - acceleY;
+    //console.log("Xvelocity" + xvelocity);
+    //console.log("Yvelocity " + yvelocity)
+    if (vol > thresholdTopY && !sound) {
+      y -= 2;
+      
+      
+    }
+   
+    if (vol < thresholdBottomY) {
+      y +=2;
+     sound = false;
+    }
+    if (vol > thresholdTopX && !sound) {
+      x -= 2;
+      
+      
+    }
+   
+    if (vol < thresholdBottomX) {
+      x +=2;
+     sound = false;
+    }
+
+    
+    //Luodaan pisteobjekti canvakselle
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(250,0,0,0.4)';
+    ctx.fillRect(this.pistex,  this.pistey , 50, 50);
+    ctx.fill();
+
+    //Luodaan liikuteltava pallo canvakselle
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, this.ballSize );
+    ctx.fillStyle = 'rgba(250,0,0,0.4)';
+    ctx.fill();
+    
+    //x += 2;
+    ctx.fillStyle = "rgba(34,45,23,0.4)";
+    ctx.fillRect(0, 0, can.width, can.height);
+     
+
+    requestAnimationFrame(drawVoice);
+}
+
+
 
   function draw2() {
   
@@ -56,31 +120,15 @@ accelerometer.addEventListener('reading', e => {
    // ctx.drawImage(target, 0, 0, 300, 300);
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
     
-    var vol = mic.getLevel();
-    var thresholdTop = 0.01;
-    var thresholdBottom = 0.001;
-    
+   
+    //console.log(vol);
+    //console.log("Yvelocity " + yvelocity)
     xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
-    console.log("Xvelocity" + xvelocity);
-    console.log("Yvelocity " + yvelocity)
-    if (vol > thresholdTop && !sound && (xvelocity > -200 && xvelocity < 20 || yvelocity > -20 && yvelocity < 20)) {
-      y += 2;
-      
-      
-    }
-   
-    else if (vol < thresholdBottom && (xvelocity > -20 && xvelocity < 20 || yvelocity > -20 && yvelocity < 20)) {
-      y -=2;
-     sound = false;
-    }
-    else {
-    
-    
-    x = parseInt(x + xvelocity / 100);
+     x = parseInt(x + xvelocity / 100);
     y = parseInt(y + yvelocity / 100);
   
-    }
+    
     //Luodaan pisteobjekti canvakselle
     ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
@@ -102,15 +150,18 @@ accelerometer.addEventListener('reading', e => {
 }
 
 function setup(){
+  if(voiceMode) {
   sliderTop = createSlider(0, 1, 0.3, 0.01);
   sliderBottom = createSlider(0, 1, 0.1, 0.01);
   mic = new p5.AudioIn();
   mic.start();
- 
-newPoint();
+  drawVoice();
+}
+
+else{newPoint();
 
 draw2();
-
+}
 
 }
 
