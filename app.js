@@ -62,10 +62,10 @@ accelerometer.addEventListener('reading', e => {
     //console.log(vol);
     if (vol > thresholdTop && !sound) {
       y += 5;
-      sound = true;
+      
       
     }
-    if (vol < thresholdBottom) {
+    else if (vol < thresholdBottom) {
       y -=5;
      sound = false;
     }
