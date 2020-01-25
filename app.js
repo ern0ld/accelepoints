@@ -28,9 +28,7 @@ accelerometer.addEventListener('reading', e => {
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
     
-    if (x == 0 && y == 0) {
-      init();
-    }
+    
     
   
   
@@ -72,6 +70,7 @@ accelerometer.addEventListener('reading', e => {
     }
     else {
       console.log("laitetta ei ole liikutettu tai kiihtyvyysanturia ei ole käytettävissä");
+      init();
       requestAnimationFrame(draw);
     }
     
@@ -115,6 +114,7 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
       console.log("törmäys");
       destroyPoint();
       
+      
     }
    
 }
@@ -141,7 +141,7 @@ function destroyPoint(){
 }
 newPoint();
 draw();
-
+init();
 
 
 
