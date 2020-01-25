@@ -76,25 +76,25 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
         x = 0;
           xvelocity = -xvelocity;
           
-          console.log("muutettu x " + x);
+          console.log("xVelocity on :" + xvelocity );
       }
       //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
       if(y < 0){
           y = 0;
         yvelocity = -yvelocity;
-        console.log("muutettu y " + y);
+        console.log("yVelocity on :" + yvelocity );
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle oikealta vaihdetaan suunta
     if(x > can.width-20){
         x = can.width -20;
         xvelocity = -xvelocity;
-       console.log("muutettu x" + x);
+       console.log("xVelocity on :" + xvelocity );
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle alhaalta, vaihdetaan suunta
     if(y > can.height-20){
         y = can.height -20;
         yvelocity = -yvelocity;
-        console.log("muutettu y " + y);
+        console.log("yVelocity on :" + yvelocity );
     }
     //Tarkistetaan törmääkö pallo pisteobjektiin
     if(distance < ballSize + 50) {
