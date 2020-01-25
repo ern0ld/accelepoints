@@ -59,13 +59,13 @@ accelerometer.addEventListener('reading', e => {
     var vol = mic.getLevel();
     var thresholdTop = 0.01;
     var thresholdBottom = 0.001;
-    //console.log(vol);
-    if (vol > thresholdTop && !sound && xvelocity < 20) {
+    console.log(xvelocity);
+    if (vol > thresholdTop && !sound && (xvelocity < 20 || yvelocity < 20)) {
       y += 5;
       
       
     }
-    else if (vol < thresholdBottom && xvelocity < 20 ) {
+    else if (vol < thresholdBottom && (xvelocity < 20 || yvelocity < 20)) {
       y -=5;
      sound = false;
     }
