@@ -57,17 +57,17 @@ catch(error) {
   function drawVoice(){
     bounceCheck();
   var vol = mic.getLevel();
-    var thresholdTopY = 0.001;
-    var thresholdBottomY = 0.0001;
-    var thresholdTopX = 0.0003;
-    var thresholdBottomX = 0.001;
+    var thresholdTopY = 0.2;
+    var thresholdBottomY = 0.1;
+    var thresholdTopX = 0.1;
+    var thresholdBottomX = 0.01;
+    console.log(mic.getLevel());
     //console.log(vol);
     //console.log("Yvelocity " + yvelocity)
-    xvelocity = xvelocity + acceleX;
-    yvelocity = yvelocity - acceleY;
+    
     //console.log("Xvelocity" + xvelocity);
     //console.log("Yvelocity " + yvelocity)
-    if (vol > thresholdTopY && !sound) {
+    if (vol < thresholdTopY && vol > thresholdBottomX && !sound) {
       y -= 2;
       
       
@@ -77,7 +77,7 @@ catch(error) {
       y +=2;
      sound = false;
     }
-    if (vol > thresholdTopX && !sound) {
+    if (vol < thresholdTopX && vol > thresholdBottomX && !sound) {
       x -= 2;
       
       
@@ -112,7 +112,8 @@ catch(error) {
 
 
   function draw2() {
-  
+    
+    console.log(mic.getLevel());
     bounceCheck();
   
     
@@ -159,7 +160,8 @@ function setup(){
 }
 
 else{newPoint();
-
+  mic = new p5.AudioIn();
+  mic.start();
 draw2();
 }
 
