@@ -12,9 +12,7 @@ this.pistey = 0;
 var value = 0;
 var timeoutID;
 this.ballSize = 2 * Math.PI;
-let mic;
-  let sliderBottom, sliderTop;
-  let sound = false;
+
 
 ctx.clearRect(x,y,can.width,can.height);
     ctx.fillStyle = "rgba(34,45,23,0.4)";
@@ -46,38 +44,6 @@ accelerometer.addEventListener('reading', e => {
  
   accelerometer.start();
   function draw2() {
-    var vol = mic.getLevel();
-    var thresholdTop = sliderTop.value();
-    var thresholdBottom = sliderBottom.value();
-  
-    if (vol > thresholdTop && !sound) {
-      y += 200;
-      timeoutID = setInterval(draw2, 10000);
-      clearInterval(timeoutID);
-      sound = true;
-    }
-  
-    if (vol < thresholdBottom) {
-      
-      sound = false;
-    }
-  
-    fill(0, 255, 0);
-    //console.log(vol);
-    noStroke();
-    var y = map(vol, 0, 1, height, 0);
-    rect(width - 50, y, 50, height - y);
-  
-    var ty = map(thresholdTop, 0, 1, height, 0);
-    stroke(255, 0, 0);
-    strokeWeight(4);
-    line(width - 50, ty, width, ty);
-  
-    var by = map(thresholdBottom, 0, 1, height, 0);
-    stroke(0, 0, 255);
-    strokeWeight(4);
-    line(width - 50, by, width, by);
-  
     
     
     xvelocity = xvelocity + acceleX;
@@ -112,11 +78,9 @@ accelerometer.addEventListener('reading', e => {
 }
 function setup(){
  
-  mic = new p5.AudioIn();
-mic.start();
+ 
 newPoint();
-sliderTop = createSlider(0, 1, 0.3, 0.01);
-sliderBottom = createSlider(0, 1, 0.1, 0.01);
+
 draw2();
 }
 
@@ -182,7 +146,7 @@ function destroyPoint(){
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
 }
-//setup();
+setup();
 
 
 
