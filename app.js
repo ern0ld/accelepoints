@@ -59,20 +59,24 @@ accelerometer.addEventListener('reading', e => {
     var vol = mic.getLevel();
     var thresholdTop = 0.01;
     var thresholdBottom = 0.001;
-    console.log(vol);
+    //console.log(vol);
     if (vol > thresholdTop && !sound) {
       y += 5;
+      sound = true;
       
     }
     if (vol < thresholdBottom) {
       y -=5;
-      xvelocity = xvelocity + acceleX;
+     sound = false;
+    }
+    else {
+    xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
     
     x = parseInt(x + xvelocity / 100);
     y = parseInt(y + yvelocity / 100);
   
-    
+    }
     //Luodaan pisteobjekti canvakselle
     ctx.beginPath();
     ctx.fillStyle = 'rgba(250,0,0,0.4)';
@@ -88,8 +92,6 @@ accelerometer.addEventListener('reading', e => {
     //x += 2;
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
-      sound = false;
-    }
      
   
     requestAnimationFrame(draw2);
@@ -120,29 +122,29 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
         x = 0;
           xvelocity = -xvelocity * 0.50;
           
-          console.log("xVelocity on :" + xvelocity );
+          //console.log("xVelocity on :" + xvelocity );
       }
       //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
       if(y < 0){
           y = 0;
         yvelocity = -yvelocity * 0.50;
-        console.log("yVelocity on :" + yvelocity );
+        //console.log("yVelocity on :" + yvelocity );
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle oikealta vaihdetaan suunta
     if(x > can.width-20){
         x = can.width -20;
         xvelocity = -xvelocity * 0.50;
-       console.log("xVelocity on :" + xvelocity );
+       //console.log("xVelocity on :" + xvelocity );
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle alhaalta, vaihdetaan suunta
     if(y > can.height-20){
         y = can.height -20;
         yvelocity = -yvelocity* 0.50;
-        console.log("yVelocity on :" + yvelocity );
+        //console.log("yVelocity on :" + yvelocity );
     }
     //Tarkistetaan törmääkö pallo pisteobjektiin
     if(distance < ballSize + 50) {
-      console.log("törmäys");
+     // console.log("törmäys");
       destroyPoint();
       
       
