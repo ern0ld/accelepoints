@@ -49,14 +49,14 @@ accelerometer.addEventListener('reading', e => {
     var thresholdTop = sliderTop.value();
     var thresholdBottom = sliderBottom.value();
   
-    if (vol > thresholdTop && !clapping) {
+    if (vol > thresholdTop && !sound) {
       y += 500;
       sound = true;
     }
   
     if (vol < thresholdBottom) {
       
-      clapping = false;
+      sound = false;
     }
   
     fill(0, 255, 0);
