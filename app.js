@@ -4,11 +4,16 @@ var ctx = can.getContext('2d');
 let target = new Image();
 target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
 var points = document.getElementById("points").innerHTML;
+let sphere = document.getElementById('sphere1');
+sphere.hidden = true;
 let x = can.width/2, y = can.height/2;
 this.pistex = 0;
 this.pistey = 0;
 var value = 0;
 this.ballSize = 2 * Math.PI;
+let mic;
+  let sliderBottom, sliderTop;
+  let sound = false;
 
 ctx.clearRect(x,y,can.width,can.height);
     ctx.fillStyle = "rgba(34,45,23,0.4)";
@@ -27,10 +32,10 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
-    if(x == 0 && y == 0){
+    /*if(x == 0 && y == 0){
       x = acceleX;
       y = acceleY;
-    }
+    }*/
   
     
   
@@ -40,8 +45,38 @@ accelerometer.addEventListener('reading', e => {
  
   accelerometer.start();
   function draw() {
+    var vol = mic.getLevel();
+    var thresholdTop = sliderTop.value();
+    var thresholdBottom = sliderBottom.value();
+  
+    if (vol > thresholdTop && !clapping) {
+      y += 500;
+      sound = true;
+    }
+  
+    if (vol < thresholdBottom) {
+      
+      clapping = false;
+    }
+  
+    fill(0, 255, 0);
+    //console.log(vol);
+    noStroke();
+    var y = map(vol, 0, 1, height, 0);
+    rect(width - 50, y, 50, height - y);
+  
+    var ty = map(thresholdTop, 0, 1, height, 0);
+    stroke(255, 0, 0);
+    strokeWeight(4);
+    line(width - 50, ty, width, ty);
+  
+    var by = map(thresholdBottom, 0, 1, height, 0);
+    stroke(0, 0, 255);
+    strokeWeight(4);
+    line(width - 50, by, width, by);
+  
     
-    if (acceleX != 0 || acceleY != 0) {
+    
     xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
     
@@ -67,13 +102,19 @@ accelerometer.addEventListener('reading', e => {
    // ctx.drawImage(target, 0, 0, 300, 300);
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
     requestAnimationFrame(draw);
-    }
-    else {
-      console.log("laitetta ei ole liikutettu tai kiihtyvyysanturia ei ole käytettävissä");
-      requestAnimationFrame(draw);
-    }
     
     
+    
+    
+}
+function setup(){
+ 
+  mic = new p5.AudioIn();
+mic.start();
+newPoint();
+sliderTop = createSlider(0, 1, 0.3, 0.01);
+sliderBottom = createSlider(0, 1, 0.1, 0.01);
+draw();
 }
 
 //Törmäyksen tarkistus
@@ -138,9 +179,7 @@ function destroyPoint(){
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
 }
-
-newPoint();
-draw();
+//setup();
 
 
 
