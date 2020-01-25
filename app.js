@@ -28,7 +28,7 @@ accelerometer.addEventListener('reading', e => {
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
     
-    
+  
     
   
   
@@ -139,9 +139,10 @@ function destroyPoint(){
   ctx.clearRect(this.pistex,this.pistey,50,50);
   newPoint();
 }
+init();
 newPoint();
 draw();
-init();
+
 
 
 
