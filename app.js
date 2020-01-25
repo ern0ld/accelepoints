@@ -74,26 +74,26 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
 //Mikäli pallo on menossa rajojen ulkopuolelle vasemmalta, vaihdetaan suunta
     if(x <0){
         x = 0;
-          xvelocity = -xvelocity;
+          xvelocity = -xvelocity * 0.50;
           
           console.log("xVelocity on :" + xvelocity );
       }
       //Mikäli pallo on menossa rajojen ulkopuolelle ylhäältä, vaihdetaan suunta
       if(y < 0){
           y = 0;
-        yvelocity = -yvelocity;
+        yvelocity = -yvelocity * 0.50;
         console.log("yVelocity on :" + yvelocity );
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle oikealta vaihdetaan suunta
     if(x > can.width-20){
         x = can.width -20;
-        xvelocity = -xvelocity;
+        xvelocity = -xvelocity * 0.50;
        console.log("xVelocity on :" + xvelocity );
     }
     //Mikäli pallo on menossa rajojen ulkopuolelle alhaalta, vaihdetaan suunta
     if(y > can.height-20){
         y = can.height -20;
-        yvelocity = -yvelocity;
+        yvelocity = -yvelocity* 0.50;
         console.log("yVelocity on :" + yvelocity );
     }
     //Tarkistetaan törmääkö pallo pisteobjektiin
