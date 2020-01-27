@@ -57,11 +57,11 @@ catch(error) {
   function drawVoice(){
     bounceCheck();
   var vol = mic.getLevel();
-    var thresholdTopY = 0.2;
-    var thresholdBottomY = 0.07;
-    var thresholdTopX = 0.1;
-    var thresholdBottomX = 0.01;
-    console.log(mic.getLevel());
+    var thresholdTopY = sliderTopY.value();
+    var thresholdBottomY = sliderBottomY.value();
+    var thresholdTopX = sliderTopX.value();
+    var thresholdBottomX = sliderBottomX.value();
+    console.log("Tässä X topsliderin value" + sliderTopX.value());
     //console.log(vol);
     //console.log("Yvelocity " + yvelocity)
     
@@ -152,8 +152,12 @@ catch(error) {
 
 function setup(){
   if(voiceMode) {
-  sliderTop = createSlider(0, 1, 0.3, 0.01);
-  sliderBottom = createSlider(0, 1, 0.1, 0.01);
+  sliderTopX = createSlider(0, 1, 0.3, 0.01);
+  sliderBottomX = createSlider(0, 1, 0.1, 0.01);
+  //sliderTop.addEventListener("slide", () => console.log(sliderTop.value));
+  sliderTopY = createSlider(0, 1, 0.3, 0.01);
+  sliderBottomY = createSlider(0, 1, 0.1, 0.01);
+  
   mic = new p5.AudioIn();
   mic.start();
   drawVoice();
