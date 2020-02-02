@@ -1,33 +1,33 @@
 var can = document.getElementById('myCanvas');
 can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
-let target = new Image();
+var target = new Image();
 target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
 var points = document.getElementById("points").innerHTML;
-let sphere = document.getElementById('sphere1');
+var sphere = document.getElementById('sphere1');
 sphere.hidden = true;
-let x = can.width/2, y = can.height/2;
+var x = can.width/2, y = can.height/2;
 this.pistex = 0;
 this.pistey = 0;
 var value = 0;
 var timeoutID;
 this.ballSize = 2 * Math.PI;
-let mic;
-  let sliderBottom, sliderTop;
-  let sound = false;
-let voiceMode = false;
+var mic;
+  var sliderBottom, sliderTop;
+  var sound = false;
+var voiceMode = false;
 
 ctx.clearRect(x,y,can.width,can.height);
     ctx.fillStyle = "rgba(34,45,23,0.4)";
     ctx.fillRect(0, 0, can.width, can.height);
 
-let xvelocity = 0;
-  let yvelocity = 0;
-  let acceleX = 0;
-  let acceleY = 0;
+var xvelocity = 0;
+  var yvelocity = 0;
+  var acceleX = 0;
+  var acceleY = 0;
 
   //Alustetaan kiihtyvyysanturi, joka mittaa puhelimen asentoa ja liikettä
-let accelerometer = null;
+var accelerometer = null;
 try { accelerometer = new Accelerometer({frequency: 60});
 accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the X-axis " + accelerometer.x);
@@ -35,10 +35,7 @@ accelerometer.addEventListener('reading', e => {
     //console.log("Acceleration along the Z-axis " + accelerometer.z);
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
-    /*if(x == 0 && y == 0){
-      x = acceleX;
-      y = acceleY;
-    }*/
+  
   
     
   
@@ -62,19 +59,13 @@ catch(error) {
     var thresholdTopX = sliderTopX.value();
     var thresholdBottomX = sliderBottomX.value();
     console.log("Tässä X topsliderin value" + sliderTopX.value());
-    //console.log(vol);
-    //console.log("Yvelocity " + yvelocity)
-    
-    //console.log("Xvelocity" + xvelocity);
-    //console.log("Yvelocity " + yvelocity)
+  
     if (vol < thresholdTopY && vol > thresholdBottomX && !sound) {
       y -= 2;
-      
-      
-    }
+        }
    
     if (vol < thresholdBottomY) {
-      y +=2;
+     y +=1;
      sound = false;
     }
     if (vol < thresholdTopX && vol > thresholdBottomX && !sound) {
@@ -84,7 +75,7 @@ catch(error) {
     }
    
     if (vol < thresholdBottomX) {
-      x +=2;
+      x +=1;
      sound = false;
     }
 
@@ -113,11 +104,8 @@ catch(error) {
 
   function draw2() {
     
-    console.log(mic.getLevel());
+   
     bounceCheck();
-  
-    
-    
    // ctx.drawImage(target, 0, 0, 300, 300);
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
     
@@ -152,20 +140,20 @@ catch(error) {
 
 function setup(){
   if(voiceMode) {
-  sliderTopX = createSlider(0, 1, 0.3, 0.01);
-  sliderBottomX = createSlider(0, 1, 0.1, 0.01);
+  sliderTopX = createSlider(0, 1, 0.15, 0.01);
+  sliderBottomX = createSlider(0, 1, 0.01, 0.01);
   //sliderTop.addEventListener("slide", () => console.log(sliderTop.value));
   sliderTopY = createSlider(0, 1, 0.3, 0.01);
-  sliderBottomY = createSlider(0, 1, 0.1, 0.01);
+  sliderBottomY = createSlider(0, 1, 0.15, 0.01);
   
   mic = new p5.AudioIn();
   mic.start();
   drawVoice();
 }
 
-else{newPoint();
+else{/*newPoint();
   mic = new p5.AudioIn();
-  mic.start();
+  mic.start();*/
 draw2();
 }
 
@@ -174,8 +162,8 @@ draw2();
 //Törmäyksen tarkistus
 function bounceCheck(){
   //luodaan muuttujat törmäyspisteen löytämiseksi
-  let collisionx = x - this.pistex;
-let collisiony = y - this.pistey;
+  var collisionx = x - this.pistex;
+var collisiony = y - this.pistey;
 var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
 
 //Mikäli pallo on menossa rajojen ulkopuolelle vasemmalta, vaihdetaan suunta
