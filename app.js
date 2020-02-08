@@ -1,8 +1,6 @@
 var can = document.getElementById('myCanvas');
 can.height = 700; can.width = 700;
 var ctx = can.getContext('2d');
-var target = new Image();
-target.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
 var points = document.getElementById("points").innerHTML;
 var sphere = document.getElementById('sphere1');
 sphere.hidden = true;
@@ -30,21 +28,15 @@ var xvelocity = 0;
 var accelerometer = null;
 try { accelerometer = new Accelerometer({frequency: 60});
 accelerometer.addEventListener('reading', e => {
-    //console.log("Acceleration along the X-axis " + accelerometer.x);
-    //console.log("Acceleration along the Y-axis " + accelerometer.y);
-    //console.log("Acceleration along the Z-axis " + accelerometer.z);
+   
     acceleX = accelerometer.x;
     acceleY = accelerometer.y;
-  
-  
-    
-  
-  
-  });
+    });
 
  
   accelerometer.start();
 }
+//Mikäli kiihtyvyysanturin käyttöönottaminen ei onnistu, vaihdetaan ääniohjaukseen
 catch(error) {
   console.log("Vaihdetaan ääniohjaukseen");
   voiceMode = true;
@@ -52,14 +44,17 @@ catch(error) {
 }
 
   function drawVoice(){
+    //Tarkastellaan seinään osumista
     bounceCheck();
+    //p5-kirjasto tarjoaa keinot mikrofonin äänen seuraamisen
   var vol = mic.getLevel();
+    //raja-arvot äänen voimakkuuksille
     var thresholdTopY = sliderTopY.value();
     var thresholdBottomY = sliderBottomY.value();
     var thresholdTopX = sliderTopX.value();
     var thresholdBottomX = sliderBottomX.value();
     console.log("Tässä X topsliderin value" + sliderTopX.value());
-  
+  //mikäli ääni on oikealla voimakkuudella, liikutetaan y-akselilla
     if (vol < thresholdTopY && vol > thresholdBottomX && !sound) {
       y -= 2;
         }
@@ -68,6 +63,8 @@ catch(error) {
      y +=1;
      sound = false;
     }
+      //mikäli ääni on oikealla voimakkuudella, liikutetaan x-akselilla
+
     if (vol < thresholdTopX && vol > thresholdBottomX && !sound) {
       x -= 2;
       
@@ -101,7 +98,7 @@ catch(error) {
 }
 
 
-
+//kiihtyvyysanturin piirtotoiminnot
   function draw2() {
     
    
@@ -110,8 +107,7 @@ catch(error) {
    //Piirretään canvas uudelleen tasaisin väliajoin, luo liikkumisen animaation
     
    
-    //console.log(vol);
-    //console.log("Yvelocity " + yvelocity)
+    //kiihtyvyysanturi toimittaa tietoa ja muutetaan pallon sijainti sen perusteella
     xvelocity = xvelocity + acceleX;
     yvelocity = yvelocity - acceleY;
      x = parseInt(x + xvelocity / 100);
@@ -137,8 +133,9 @@ catch(error) {
   
     requestAnimationFrame(draw2);
 }
-
+//Alun säätö, p5-kirjasto vaatii setup-funktion ohjelman käynnistyksessä
 function setup(){
+  //mikäli äänimode päällä, luodaan sliderit ja asetetaan niille arvot p5-kirjaston avulla, muuten siirrytään kiihtyvyysanturin piirtotoimintoon
   if(voiceMode) {
   sliderTopX = createSlider(0, 1, 0.15, 0.01);
   sliderBottomX = createSlider(0, 1, 0.01, 0.01);
@@ -198,7 +195,7 @@ var distance = Math.sqrt(collisionx *collisionx + collisiony * collisiony);
     }
     //Tarkistetaan törmääkö pallo pisteobjektiin
     if(distance < ballSize + 50) {
-     // console.log("törmäys");
+     //tuhotaan pisteobjekti
       destroyPoint();
       
       
@@ -224,8 +221,10 @@ function destroyPoint(){
 //document.body.appendChild(pointsHeader);
   console.log("tuhottu");
   ctx.clearRect(this.pistex,this.pistey,50,50);
+  //luodaan uusi pisteobjekti
   newPoint();
 }
+
 setup();
 
 
