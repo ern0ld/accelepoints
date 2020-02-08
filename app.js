@@ -1,5 +1,5 @@
 var can = document.getElementById('myCanvas');
-can.height = 700; can.width = 700;
+can.height = 100%; can.width = 100%;
 var ctx = can.getContext('2d');
 var points = document.getElementById("points").innerHTML;
 var sphere = document.getElementById('sphere1');
