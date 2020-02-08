@@ -13,10 +13,11 @@ h1{
 #canvasdiv{
   width: 100%;
    text-align:center; 
-  margin: 10px;
-}
+ 
 canvas{
   
 display: inline;
+   margin: 10px;
+}
 
 }
