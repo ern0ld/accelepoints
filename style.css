@@ -1,4 +1,5 @@
 canvas{
 height: calc(100% - 100px);
 width: calc(100% - 100px);
+  display:block;
 }
