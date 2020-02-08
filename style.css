@@ -10,6 +10,7 @@ h1{
 #canvasdiv{
   width: 100%;
    text-align:center; 
+  margin: 10px;
 }
 canvas{
   width:500px;
