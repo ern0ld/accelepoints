@@ -7,6 +7,9 @@ html, body, div {
 h1{
  text-align:center; 
 }
+#points{
+ text-align:center; 
+}
 #canvasdiv{
   width: 100%;
    text-align:center; 
